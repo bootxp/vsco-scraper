@@ -564,20 +564,21 @@ class Scraper(object):
         :params: lists - My naming sense was beat. lists is just a media item.
         :return: a boolean on whether the media item was downloaded successfully
         """
+        def download_img_normal(self, lists):
         if lists[2] is False:
-            if "%s.jpg" % lists[1] in os.listdir():
+            if f"{lists[1]}.jpg" in os.listdir():
                 return True
-            with open("%s.jpg" % str(lists[1]), "wb") as f:
-                f.write(requests.get(lists[0], stream=True).content)
+            with open(f"{str(lists[1])}.jpg", "wb") as file:
+                file.write(requests.get(lists[0], headers=constants.images, stream=True).content)
         else:
-            if "%s.mp4" % lists[1] in os.listdir():
+            if f"{lists[1]}.mp4" in os.listdir():
                 return True
-            with open("%s.mp4" % str(lists[1]), "wb") as f:
-                for chunk in requests.get(lists[0], stream=True).iter_content(
+            with open(f"{str(lists[1])}.mp4", "wb") as file:
+                for chunk in requests.get(lists[0],headers=constants.images, stream=True).iter_content(
                     chunk_size=1024
                 ):
                     if chunk:
-                        f.write(chunk)
+                        file.write(chunk)
         return True
 
     def run_all(self):
