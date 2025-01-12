@@ -62,3 +62,17 @@ media = {
     "X-Client-Platform": "web",
     "Authorization": "Bearer 7356455548d0a1d886db010883388d08be84d0c9",
 }
+
+images = {
+    'User-Agent': random.choice(user_agents),
+    'Accept': 'image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5',
+    'Accept-Language': 'de,en-US;q=0.7,en;q=0.3',
+    'Connection': 'keep-alive',
+    'Referer': 'https://vsco.co/',
+    'Sec-Fetch-Dest': 'image',
+    'Sec-Fetch-Mode': 'no-cors',
+    'Sec-Fetch-Site': 'same-site',
+    'Priority': 'u=4, i',
+    'Pragma': 'no-cache',
+    'Cache-Control': 'no-cache',
+}
