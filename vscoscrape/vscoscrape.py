@@ -13,12 +13,13 @@ from tqdm import tqdm
 from . import constants
 
 
+Prot="https"
 class Scraper(object):
     def __init__(self, username):
         self.username = username
         self.session = requests.Session()
         self.session.get(
-            "http://vsco.co/content/Static/userinfo?callback=jsonp_%s_0"
+            Prot+"://vsco.co/content/Static/userinfo?callback=jsonp_%s_0"
             % (str(round(time.time() * 1000))),
             headers=constants.visituserinfo,
         )
@@ -53,7 +54,7 @@ class Scraper(object):
 
         if cache is None or self.username not in cache:
             res = self.session.get(
-                "http://vsco.co/api/2.0/sites?subdomain=%s"
+                Prot+"://vsco.co/api/2.0/sites?subdomain=%s"
                 % (self.username),
                 headers=constants.visituserinfo,
             )
@@ -72,16 +73,16 @@ class Scraper(object):
         :params: none
         :return: returns the main media url by default
         """
-        self.mediaurl = "http://vsco.co/api/2.0/medias?site_id=%s" % (
+        self.mediaurl = Prot+"://vsco.co/api/2.0/medias?site_id=%s" % (
             self.siteid,
         )
-        self.journalurl = "http://vsco.co/api/2.0/articles?site_id=%s" % (
+        self.journalurl = Prot+"://vsco.co/api/2.0/articles?site_id=%s" % (
             self.siteid,
         )
-        self.collectionurl = "http://vsco.co/api/2.0/collections/%s/medias?" % (
+        self.collectionurl = Prot+"://vsco.co/api/2.0/collections/%s/medias?" % (
             self.sitecollectionid,
         )
-        self.profileurl = "http://vsco.co/api/2.0/sites/%s" % (self.siteid)
+        self.profileurl = Prot+"://vsco.co/api/2.0/sites/%s" % (self.siteid)
         
         return self.mediaurl
 
